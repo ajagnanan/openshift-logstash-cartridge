@@ -14,7 +14,7 @@ function update() {
 function start() {
     if ! [ -f $pid ]; then
         erb conf/logstash.conf.erb > logstash.conf
-        nohup logstash-1.4.1/bin/logstash agent -f logstash.conf -l logstash.log &
+        nohup logstash-1.4.1/bin/logstash agent -f logstash.conf -l logstash.log --debug &
 
         ret=$?
         if [ $ret -ne 0 ]; then
