@@ -8,11 +8,11 @@ input {
     }
 
     sqs {
-        access_key_id => "<%= ENV['OPENSHIFT_LOGSTASH_AWS_ACCESSKEY'] %>"
+        access_key_id => "<%= ENV['AWS_ACCESS_KEY_ID'] %>"
         add_field => {}
         codec => "plain"
         queue => "logstash-sky-stack"
-        secret_access_key => "<%= ENV['OPENSHIFT_LOGSTASH_AWS_SECRETKEY'] %>"
+        secret_access_key => "<%= ENV['AWS_SECRET_ACCESS_KEY'] %>"
         tags => ["sqs"]
         threads => 1
     }
