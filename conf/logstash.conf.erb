@@ -7,6 +7,15 @@ input {
         tags => ["<%= ENV['OPENSHIFT_APP_NAME'] %>", "<%= ENV['OPENSHIFT_GEAR_NAME'] %>", "<%= ENV['OPENSHIFT_NAMESPACE'] %>"]
     }
 
+    sqs {
+        access_key_id => "AKIAJAET7KOBQODXGU6A"
+        add_field => {}
+        codec => "plain"
+        queue => "logstash-sky-stack"
+        secret_access_key => "97Ad5lrCXMU30v2yryJ2tiu7p/CCaogFOYaQ+vG1"
+        tags => ["sqs"]
+        threads => 1
+    }
 }
 
 output {
