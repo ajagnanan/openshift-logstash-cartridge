@@ -3,25 +3,16 @@
 input {
 
     file {
-        path => "<%= ENV['OPENSHIFT_LOG_DIR'] %>*.log"
+        path => "<%= ENV['OPENSHIFT_LOG_LOCATION'] %>"
         tags => ["<%= ENV['OPENSHIFT_APP_NAME'] %>", "<%= ENV['OPENSHIFT_GEAR_NAME'] %>", "<%= ENV['OPENSHIFT_NAMESPACE'] %>"]
     }
 
-    sqs {
-        access_key_id => "<%= ENV['AWS_ACCESS_KEY_ID'] %>"
-        add_field => {}
-        codec => "plain"
-        queue => "logstash-sky-stack"
-        secret_access_key => "<%= ENV['AWS_SECRET_ACCESS_KEY'] %>"
-        tags => ["sqs"]
-        threads => 1
-    }
 }
 
 output {
 
     elasticsearch {
-        codec => "plain"
+        codec => "json"
         host => "<%= ENV['OPENSHIFT_LOGSTASH_ES_HOST'] %>"
         idle_flush_time => 1
         protocol => "http"
