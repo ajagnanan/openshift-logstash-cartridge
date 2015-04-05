@@ -2,4 +2,14 @@
 
 source $OPENSHIFT_LOGSTASH_DIR/lib/util
 
+if [ -d $OPENSHIFT_LOGSTASH_DIR/env ]; then
+  mkdir $OPENSHIFT_LOGSTASH_DIR/env
+fi
+
+if [ ${LOGSTASH_VERSION} ]; then
+  echo $LOGSTASH_VERSION
+else
+  echo 1.4.2
+fi > $OPENSHIFT_LOGSTASH_DIR/env/LOGSTASH_VERSION
+
 _install_version ${LOGSTASH_VERSION}
