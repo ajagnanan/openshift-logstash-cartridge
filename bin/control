@@ -28,7 +28,7 @@ function start() {
 
 function stop() {
     if [ -f $pid ]; then
-        kill -s SIGTERM $(cat $pid)
+        kill -s SIGTERM $(cat $pid) >> /dev/null
         rm $pid
     fi
     return 1
