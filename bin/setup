@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 if [ -d $OPENSHIFT_LOGSTASH_DIR/env ]; then
   #mkdir $OPENSHIFT_LOGSTASH_DIR/env
