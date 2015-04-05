@@ -1,5 +1,9 @@
 #!/bin/bash -e
 
+if [ -d $OPENSHIFT_LOGSTASH_DIR/env ]; then
+  mkdir $OPENSHIFT_LOGSTASH_DIR/env
+fi
+
 if [ ${LOGSTASH_VERSION} ]; then
         echo $LOGSTASH_VERSION
 else
