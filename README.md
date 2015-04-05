@@ -31,4 +31,4 @@ These environment variables are available when configuring Logstash:
     $ rhc set-env --app my-app --env "OPENSHIFT_LOGSTASH_ES_HOST=abc123-us-east-1.foundcluster.com"
 
     # Add this cartridge
-    $ rhc cartridge add -a your-app-name https://cartreflect-claytondev.rhcloud.com/github/ajagnanan/openshift-logstash-cartridge
+    $ rhc cartridge add https://cartreflect-claytondev.rhcloud.com/github/ajagnanan/openshift-logstash-cartridge -a your-app-name

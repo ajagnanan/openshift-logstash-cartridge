@@ -1,6 +1,7 @@
 #!/bin/bash
+source $OPENSHIFT_LOGSTASH_DIR/lib/util
 
-pid=logstash.pid
+pid=$OPENSHIFT_LOGSTASH_DIR/run/logstash.pid
 
 function status() {
     client_result $pwd
@@ -8,13 +9,13 @@ function status() {
 
 function update() {
     stop
-    ./.openshift/action_hooks/build
+    _install_version ${LOGSTASH_VERSION}
 }
 
 function start() {
     if ! [ -f $pid ]; then
-        erb conf/$OPENSHIFT_LOGSTASH_CONF_FILE.erb > logstash.conf
-        nohup logstash-1.4.1/bin/logstash agent -f logstash.conf -l logstash.log --debug &
+
+        nohup $LOGSTASH_BIN_DIR/bin/logstash agent -f $LOGSTASH_CONFIG_DIR -l $LOGSTASH_LOG_DIR/logstash.log --debug &
 
         ret=$?
         if [ $ret -ne 0 ]; then
@@ -50,7 +51,11 @@ function post-deploy() {
 }
 
 function pre-build() {
-    echo
+    if [ ! -d "$OPENSHIFT_LOGSTASH_DIR/run" ]; then
+      mkdir $OPENSHIFT_LOGSTASH_DIR/run
+    fi
+
+    _build_config
 }
 
 function tidy() {

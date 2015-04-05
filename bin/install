@@ -1,3 +1,5 @@
-#!/bin/bash
+#!/bin/bash -e
 
-curl -s https://download.elasticsearch.org/logstash/logstash/logstash-1.4.1.tar.gz | tar xz
+source $OPENSHIFT_LOGSTASH_DIR/lib/util
+
+_install_version ${LOGSTASH_VERSION}

@@ -1,0 +1,36 @@
+#!/bin/bash
+
+export LOGSTASH_BIN_DIR="$OPENSHIFT_LOGSTASH_DIR/usr"
+export LOGSTASH_LOG_DIR="$OPENSHIFT_LOGSTASH_DIR/logs"
+export LOGSTASH_CONFIG_DIR="$OPENSHIFT_REPO_DIR/logstash"
+
+function _install_version()
+{
+	local VERSION=$1
+
+	if [ -d $OPENSHIFT_LOGSTASH_DIR/usr ]; then
+		echo Removing old version
+		rm -rf $OPENSHIFT_LOGSTASH_DIR/usr
+	fi
+
+	echo Downloading version $VERSION
+	mkdir $OPENSHIFT_LOGSTASH_DIR/usr
+	curl https://download.elasticsearch.org/logstash/logstash/logstash-$VERSION.tar.gz | tar xzf - --strip-components=1 -C $OPENSHIFT_LOGSTASH_DIR/usr
+}
+
+function _build_config(){
+
+	if [ ! -d $LOGSTASH_CONFIG_DIR ]; then
+		mkdir $LOGSTASH_CONFIG_DIR
+	fi
+
+	if [ -n "$ES_HOME" ]; then
+
+		for FILE in $OPENSHIFT_LOGSTASH_DIR/template/logstash/*; do
+			[ -f "$FILE" ] || continue
+    	[ "${FILE/*.erb/}" ] || continue
+
+			erb "$FILE" > "$LOGSTASH_CONFIG_DIR/${FILE%.erb}"
+		done
+	fi
+}
