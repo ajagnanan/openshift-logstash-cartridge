@@ -20,7 +20,7 @@ function _install_version()
 
 function _build_config()
 {
-	if [ -n "$ES_HOME" ]; then
+	if [ ${ES_HOME} ]; then
 
 		for FILE in $OPENSHIFT_LOGSTASH_DIR/template/logstash/*; do
 			[ -f "$FILE" ] || continue
@@ -35,6 +35,12 @@ function _make_dirs()
 {
 	if [ ! -d $LOGSTASH_CONFIG_DIR ]; then
 		mkdir $LOGSTASH_CONFIG_DIR
+		echo $LOGSTASH_CONFIG_DIR >> $OPENSHIFT_LOGSTASH_DIR/env/LOGSTASH_CONFIG_DIR
+	fi
+
+	if [ ! -d $LOGSTASH_LOG_DIR ]; then
+		mkdir $LOGSTASH_LOG_DIR
+		echo $LOGSTASH_LOG_DIR >> $OPENSHIFT_LOGSTASH_DIR/env/LOGSTASH_LOG_DIR
 	fi
 
 	if [ ! -d "$OPENSHIFT_LOGSTASH_DIR/run" ]; then
