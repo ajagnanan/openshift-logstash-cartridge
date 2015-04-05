@@ -12,5 +12,5 @@ if [ ${LOGSTASH_VERSION} ]; then
 fi
 
 _install_version ${version}
-_mk_dirs
+_make_dirs
 _build_config
