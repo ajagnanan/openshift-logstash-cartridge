@@ -12,3 +12,4 @@ if [ ${LOGSTASH_VERSION} ]; then
 fi
 
 _install_version ${version}
+_build_config

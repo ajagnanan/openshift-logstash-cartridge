@@ -51,11 +51,7 @@ function post-deploy() {
 }
 
 function pre-build() {
-    if [ ! -d "$OPENSHIFT_LOGSTASH_DIR/run" ]; then
-      mkdir $OPENSHIFT_LOGSTASH_DIR/run
-    fi
-
-    _build_config
+    echo
 }
 
 function tidy() {

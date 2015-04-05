@@ -24,6 +24,10 @@ function _build_config(){
 		mkdir $LOGSTASH_CONFIG_DIR
 	fi
 
+	if [ ! -d "$OPENSHIFT_LOGSTASH_DIR/run" ]; then
+		mkdir $OPENSHIFT_LOGSTASH_DIR/run
+	fi
+
 	if [ -n "$ES_HOME" ]; then
 
 		for FILE in $OPENSHIFT_LOGSTASH_DIR/template/logstash/*; do
