@@ -6,10 +6,9 @@ source $OPENSHIFT_LOGSTASH_DIR/lib/util
 #  mkdir $OPENSHIFT_LOGSTASH_DIR/env
 #fi
 
+version=1.4.2
 if [ ${LOGSTASH_VERSION} ]; then
-  echo $LOGSTASH_VERSION
-else
-  echo 1.4.2
-fi > $OPENSHIFT_LOGSTASH_DIR/env/LOGSTASH_VERSION
+  let version=$LOGSTASH_VERSION
+fi
 
-_install_version ${LOGSTASH_VERSION}
+_install_version ${version}
