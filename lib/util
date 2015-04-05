@@ -18,16 +18,8 @@ function _install_version()
 	curl https://download.elasticsearch.org/logstash/logstash/logstash-$VERSION.tar.gz | tar xzf - --strip-components=1 -C $OPENSHIFT_LOGSTASH_DIR/usr
 }
 
-function _build_config(){
-
-	if [ ! -d $LOGSTASH_CONFIG_DIR ]; then
-		mkdir $LOGSTASH_CONFIG_DIR
-	fi
-
-	if [ ! -d "$OPENSHIFT_LOGSTASH_DIR/run" ]; then
-		mkdir $OPENSHIFT_LOGSTASH_DIR/run
-	fi
-
+function _build_config()
+{
 	if [ -n "$ES_HOME" ]; then
 
 		for FILE in $OPENSHIFT_LOGSTASH_DIR/template/logstash/*; do
@@ -36,5 +28,16 @@ function _build_config(){
 
 			erb "$FILE" > "$LOGSTASH_CONFIG_DIR/${FILE%.erb}"
 		done
+	fi
+}
+
+function _make_dirs()
+{
+	if [ ! -d $LOGSTASH_CONFIG_DIR ]; then
+		mkdir $LOGSTASH_CONFIG_DIR
+	fi
+
+	if [ ! -d "$OPENSHIFT_LOGSTASH_DIR/run" ]; then
+		mkdir $OPENSHIFT_LOGSTASH_DIR/run
 	fi
 }
