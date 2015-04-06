@@ -2,7 +2,8 @@ output {
 
     elasticsearch {
         codec => "json"
-        host => "<%= ENV['OPENSHIFT_APP_DNS'] %>/<%= ENV['ELASTICSEARCH_PATH'] %>"
+        host => "<%= ENV['OPENSHIFT_ELASTICSEARCH_IP'] %>"
+        port => "9200"
         idle_flush_time => 1
         protocol => "http"
         workers => 1
