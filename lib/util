@@ -40,7 +40,9 @@ function _build_config()
 {
 	if [ ${ES_HOME} ]; then
 		eval $( parse_yaml $OPENSHIFT_ELASTICSEARCH_DIR/kibana/config/kibana.yml )
-
+		export kibana_elasticsearch_username=$kibana_elasticsearch_username
+		export kibana_elasticsearch_password=$kibana_elasticsearch_password
+		
 		erb $OPENSHIFT_LOGSTASH_DIR/template/logstash/1_input_es.erb > $LOGSTASH_CONFIG_DIR/1_input_es
 		erb $OPENSHIFT_LOGSTASH_DIR/template/logstash/2_filter_default.erb > $LOGSTASH_CONFIG_DIR/2_filter_default
 		erb $OPENSHIFT_LOGSTASH_DIR/template/logstash/3_output_es.erb > $LOGSTASH_CONFIG_DIR/3_output_es

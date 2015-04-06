@@ -14,7 +14,7 @@ function update() {
 
 function start() {
     if ! [ -f $pid ]; then
-
+        _build_config
         nohup $LOGSTASH_BIN_DIR/bin/logstash agent -f $LOGSTASH_CONFIG_DIR -l $LOGSTASH_LOG_DIR/logstash.log --debug &
 
         ret=$?

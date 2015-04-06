@@ -9,4 +9,3 @@ fi
 
 _install_version ${version}
 _make_dirs
-_build_config
