@@ -1,7 +1,7 @@
 input {
 
     file {
-        path => "<%= ENV['OPENSHIFT_LOG_LOCATION'] %>"
+        path => "<%= ENV['OPENSHIFT_ELASTICSEARCH_DIR'] %>/access.log"
         tags => ["<%= ENV['OPENSHIFT_APP_NAME'] %>", "<%= ENV['OPENSHIFT_GEAR_NAME'] %>", "<%= ENV['OPENSHIFT_NAMESPACE'] %>"]
     }
 

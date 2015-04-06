@@ -2,7 +2,7 @@ output {
 
     elasticsearch {
         codec => "json"
-        host => "<%= ENV['OPENSHIFT_LOGSTASH_ES_HOST'] %>"
+        host => "<%= ENV['OPENSHIFT_APP_DNS'] %>/<%= ENV['ELASTICSEARCH_PATH'] %>"
         idle_flush_time => 1
         protocol => "http"
         workers => 1

@@ -20,15 +20,11 @@ function _install_version()
 
 function _build_config()
 {
-	#if [ ${ES_HOME} ]; then
-
-		for FILE in $OPENSHIFT_LOGSTASH_DIR/template/logstash/*; do
-			[ -f "$FILE" ] || continue
-    	[ "${FILE/*.erb/}" ] || continue
-
-			erb "$FILE" > "$LOGSTASH_CONFIG_DIR/${FILE%.erb}"
-		done
-	#fi
+	if [ ${ES_HOME} ]; then
+		erb $OPENSHIFT_LOGSTASH_DIR/template/logstash/1_input_es.erb > $LOGSTASH_CONFIG_DIR/1_input_es
+		erb $OPENSHIFT_LOGSTASH_DIR/template/logstash/2_filter_default.erb > $LOGSTASH_CONFIG_DIR/2_filter_default
+		erb $OPENSHIFT_LOGSTASH_DIR/template/logstash/3_output_es.erb > $LOGSTASH_CONFIG_DIR/3_output_es
+	fi
 }
 
 function _make_dirs()
