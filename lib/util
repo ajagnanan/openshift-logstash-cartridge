@@ -39,7 +39,7 @@ function parse_yaml {
 function _build_config()
 {
 	if [ ${ES_HOME} ]; then
-		eval ${ parse_yaml $OPENSHIFT_ELASTICSEARCH_DIR/kibana/config/kibana.yml }
+		eval $( parse_yaml $OPENSHIFT_ELASTICSEARCH_DIR/kibana/config/kibana.yml )
 
 		erb $OPENSHIFT_LOGSTASH_DIR/template/logstash/1_input_es.erb > $LOGSTASH_CONFIG_DIR/1_input_es
 		erb $OPENSHIFT_LOGSTASH_DIR/template/logstash/2_filter_default.erb > $LOGSTASH_CONFIG_DIR/2_filter_default
