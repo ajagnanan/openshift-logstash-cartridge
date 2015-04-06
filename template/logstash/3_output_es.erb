@@ -1,17 +1,16 @@
 output {
 
-    elasticsearch {
-        codec => "json"
-        host => "<%= ENV['OPENSHIFT_ELASTICSEARCH_IP'] %>"
-        port => "9200"
-        <% if ENV['kibana_elasticsearch_username'] %>
-          user => "<%= ENV['kibana_elasticsearch_username'] %>"
-        <% end %>
-        <% if ENV['kibana_elasticsearch_password'] %>
-          password => "<%= ENV['kibana_elasticsearch_password'] %>"
-        <% end %>
-        idle_flush_time => 1
-        protocol => "http"
-        workers => 1
-      }
+  elasticsearch_http {
+    codec => "json"
+    host => "<%= ENV['OPENSHIFT_ELASTICSEARCH_IP'] %>"
+    port => "9200"
+    <% if ENV['kibana_elasticsearch_username'] %>
+      user => "<%= ENV['kibana_elasticsearch_username'] %>"
+    <% end %>
+    <% if ENV['kibana_elasticsearch_password'] %>
+      password => "<%= ENV['kibana_elasticsearch_password'] %>"
+    <% end %>
+    idle_flush_time => 1
+    workers => 1
+  }
 }
