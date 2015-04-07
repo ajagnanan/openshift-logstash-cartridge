@@ -1,34 +1,23 @@
-## OpenShift Logstash Cartridge
+OpenShift Logstash Cartridge
+=================================
+This cartridge provides a Logstash installation for Openshift. It is a cartridge, so it'll need an existing Openshift gear to be installed on. It is mainly user configuration driven because the configuration files can be uploaded as part of the gear repository. If using my [openshift-elasticsearch](https://github.com/ajagnanan/openshift-elasticsearch) cartridge, it'll auto configure the `access.log` to be inputted into Elasticsearch. It'll use the user credentials that `Kibana` uses if `shield` is installed.
 
-This cartridge is best used as a addon to an application in openshift. The configuration is mainly driven through environment variables,
-due to certain configurations require confidential information.
+To add this cartride, run:
 
-## Environment Variables
+    rhc cartridge add https://cartreflect-claytondev.rhcloud.com/github/ajagnanan/openshift-logstash-cartridge -a <app>
 
-These environment variables are available when configuring Logstash:
+### Configuration
 
- * **`OPENSHIFT_LOGSTASH_CONF_FILE`**: Configuration file name located in the /conf folder. Required.
+Configuration files can be added in your repository's `logstash` folder. Follow the samples provided in the `template/logstash` directory. Multiple configuration files can be used and an example of that is found [here](http://lookonmyworks.co.uk/2014/04/17/multiple-configuration-files-for-logstash/). 
 
- * **`OPENSHIFT_LOGSTASH_ES_HOST`**: URL of the Elasticsearch cluster to log to. Required.
- * **`OPENSHIFT_LOGSTASH_ES_USERNAME`**: Username to connect as. Optional.
- * **`OPENSHIFT_LOGSTASH_ES_PASSWORD`**: Password to connect with. Optional.
+### Updates
 
- * **`AWS_ACCESS_KEY_ID`**: AWS access key
- * **`AWS_SECRET_ACCESS_KEY`**: AWS secret key
- * **`AWS_SQS_QUEUE_NAME`**: AWS queue name
+This cartridge is upgradeable. The setup looks at an environment variable to handle the upgrade.
 
- * **`OPENSHIFT_LOG_LOCATION`**: Log location when using the file input
+The steps are as follows:
 
-## Installation Steps
+  - rhc set-env LOGSTASH_VERSION=1.4.2 -a <app> --namespace <domain>
+  - trigger a `deploy` by pushing a change with git
 
-    1. Create your application
-    2. Add the environment variables
-    3. Add this cartridge to your application
-
-## Environment Variable Configuration
-
-    # Configure application environment variables
-    $ rhc set-env --app my-app --env "OPENSHIFT_LOGSTASH_ES_HOST=abc123-us-east-1.foundcluster.com"
-
-    # Add this cartridge
-    $ rhc cartridge add https://cartreflect-claytondev.rhcloud.com/github/ajagnanan/openshift-logstash-cartridge -a your-app-name
+### License
+This cartridge is [MIT](http://opensource.org/licenses/MIT) licensed.
