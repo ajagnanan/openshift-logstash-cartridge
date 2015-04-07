@@ -8,7 +8,7 @@ To add this cartride, run:
 
 ### Configuration
 
-Configuration files can be added in your repository's `logstash` folder. Follow the samples provided in the `template/logstash` directory. Multiple configuration files can be used and an example of that is found [here](http://lookonmyworks.co.uk/2014/04/17/multiple-configuration-files-for-logstash/). 
+Configuration files can be added in your repository's `logstash` folder. Follow the samples provided in the `template/logstash` directory. Multiple configuration files can be used and a guide of that is found [here](http://lookonmyworks.co.uk/2014/04/17/multiple-configuration-files-for-logstash/). 
 
 ### Updates
 
