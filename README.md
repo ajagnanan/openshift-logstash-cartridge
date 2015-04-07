@@ -1,6 +1,6 @@
 OpenShift Logstash Cartridge
 =================================
-This cartridge provides a Logstash installation for Openshift. It is a cartridge, so it'll need an existing Openshift gear to be installed on. It is mainly user configuration driven because the configuration files can be uploaded as part of the gear's repository. If using my [openshift-elasticsearch](https://github.com/ajagnanan/openshift-elasticsearch) cartridge, it'll auto configure the `access.log` to be inputted into Elasticsearch. It'll use the user credentials that `Kibana` uses if `shield` is installed.
+This cartridge provides a Logstash installation for Openshift. It is a cartridge, so it'll need an existing Openshift application to be added too. It is mainly user configuration driven because the configuration files can be uploaded as part of the gear's repository. If using my [openshift-elasticsearch](https://github.com/ajagnanan/openshift-elasticsearch) cartridge, it'll auto configure the `access.log` to be inputted into Elasticsearch. It'll use the user credentials that `Kibana` uses if `shield` is installed.
 
 To add this cartride, run:
 
