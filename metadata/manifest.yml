@@ -1,9 +1,10 @@
 Name: logstash
 Cartridge-Short-Name: LOGSTASH
-Display-Name: Logstash 1.4.2
+Display-Name: Logstash
 Description: "Logstash is a data pipeline that helps you process logs and other event data from a variety of systems. With 165 plugins and counting, Logstash can connect to a variety of sources and stream data at scale to a central analytics system."
 Version: "1.4.2"
 Versions: ["1.4.2"]
+License: MIT
 Cartridge-Version: 0.0.1
 Cartridge-Vendor: ajagnanan
 
