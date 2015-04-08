@@ -16,6 +16,9 @@ function _install_version()
 	echo Downloading version $VERSION
 	mkdir $OPENSHIFT_LOGSTASH_DIR/usr
 	curl https://download.elasticsearch.org/logstash/logstash/logstash-$VERSION.tar.gz | tar xzf - --strip-components=1 -C $OPENSHIFT_LOGSTASH_DIR/usr
+
+	# move the patterns into the /usr dir
+	cp -Rf $OPENSHIFT_LOGSTASH_DIR/template/patterns $OPENSHIFT_LOGSTASH_DIR/usr
 }
 
 function parse_yaml {
