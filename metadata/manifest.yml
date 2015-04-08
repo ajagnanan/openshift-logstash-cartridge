@@ -1,15 +1,22 @@
 Name: logstash
-Cartridge-Short-Name: logstash
+Cartridge-Short-Name: LOGSTASH
 Display-Name: Logstash 1.4.2
+Description: "Logstash is a data pipeline that helps you process logs and other event data from a variety of systems. With 165 plugins and counting, Logstash can connect to a variety of sources and stream data at scale to a central analytics system."
 Version: "1.4.2"
 Versions: ["1.4.2"]
 Cartridge-Version: 0.0.1
 Cartridge-Vendor: ajagnanan
+
 Categories:
  - service
  - logstash
+
 Provides:
  - logstash
+ - logstash-1
+ - logstash-1.4
+ - logstash-1.4.2
+
 Scaling:
   Min: 1
   Max: -1
